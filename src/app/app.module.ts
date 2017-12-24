@@ -13,6 +13,7 @@ import { OrderComponent } from './component/order/order.component';
 import { ConfigLevelComponent } from './component/config-level/config-level.component';
 import { ConfigCategoryComponent } from './component/config-category/config-category.component';
 import { ConfigMyComponent } from './component/config-my/config-my.component';
+import { UserCardComponent } from './component/user-card/user-card.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { ConfigMyComponent } from './component/config-my/config-my.component';
     OrderComponent,
     ConfigLevelComponent,
     ConfigCategoryComponent,
-    ConfigMyComponent
+    ConfigMyComponent,
+    UserCardComponent
   ],
   imports: [
     BrowserModule,

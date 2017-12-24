@@ -1,16 +1,7 @@
 <div id="wrapper">
-    <app-menus></app-menus>
+    <app-menus [menus]='menus'></app-menus>
     <div id="page-wrapper" class="gray-bg">
-        <div class="row border-bottom">
-            <nav class="navbar navbar-static-top white-bg" role="navigation" style="margin-bottom: 0">
-                <div class="navbar-header"> <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a> </div>
-                <ul class="nav navbar-top-links navbar-right">
-                    <li>
-                        <a href="#"> <i class="fa fa-sign-out"></i> 退出 </a>
-                    </li>
-                </ul>
-            </nav>
-        </div>
+        <app-user-card></app-user-card>
         <div class="wrapper wrapper-content animated fadeInRight">
             <div class="row">
                 <div class="col-lg-12">
@@ -53,8 +44,7 @@
                                         <div class="hr-line-dashed"></div>
                                         <div class="form-group">
                                             <div class="col-sm-4 col-sm-offset-2">
-                                                <button class="btn btn-primary" type="submit">保存修改</button>
-                                                <button class="btn btn-white" type="submit">取消</button>
+                                                <button class="btn btn-primary" type="button">保存修改</button>
 
                                             </div>
                                         </div>
@@ -88,9 +78,7 @@
                                         <div class="hr-line-dashed"></div>
                                         <div class="form-group">
                                             <div class="col-sm-4 col-sm-offset-2">
-                                                <button class="btn btn-primary" type="submit">保存修改</button>
-                                                <button class="btn btn-white" type="submit">取消</button>
-
+                                                <button class="btn btn-primary" type="button">保存修改</button>
                                             </div>
                                         </div>
                                     </form>

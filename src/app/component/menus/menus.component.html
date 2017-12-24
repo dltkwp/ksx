@@ -11,25 +11,27 @@
                 </div>
                 <div class="logo-element"> KSX </div>
             </li>
-            <li class="active"> <a href="#"><i class="fa fa-sitemap"></i> <span class="nav-label">我是供应商</span> <span class="fa arrow"></span></a>
+            <li [ngClass]="{'active':menus.parentKey=='gys'}">
+                <a href="#"><i class="fa fa-sitemap"></i> <span class="nav-label">我是供应商</span> <span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level collapse">
-                    <li class="active"><a href="order.html">订单管理</a></li>
-                    <li><a href="distributor.html">分销商管理</a></li>
-                    <li><a href="product.html">商品管理</a></li>
-                    <li><a href="setting-level.html">分销等级设置</a></li>
-                    <li><a href="setting-type.html">商品分类设置</a></li>
+                    <li [ngClass]="{'active':menus.childrenKey=='order'}"><a href="order.html">订单管理</a></li>
+                    <li [ngClass]="{'active':menus.childrenKey=='fxgl'}"><a href="distributor.html">分销商管理</a></li>
+                    <li [ngClass]="{'active':menus.childrenKey=='goods'}"><a href="product.html">商品管理</a></li>
+                    <li [ngClass]="{'active':menus.childrenKey=='level'}"><a href="setting-level.html">分销等级设置</a></li>
+                    <li [ngClass]="{'active':menus.childrenKey=='goods-category'}"><a href="setting-type.html">商品分类设置</a></li>
                 </ul>
             </li>
-            <li> <a href="#"><i class="fa fa-sitemap"></i> <span class="nav-label">我是分销商</span> <span class="fa arrow"></span></a>
+            <li [ngClass]="{'active':menus.parentKey=='fx'}"> <a href="#"><i class="fa fa-sitemap"></i> <span class="nav-label">我是分销商</span> <span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level collapse">
-                    <li><a href="order-distributor.html">订单管理</a></li>
-                    <li><a href="member.html">顾客管理</a></li>
-                    <li><a href="product-distributor.html">商品管理</a></li>
+                    <li [ngClass]="{'active':menus.childrenKey=='order'}"><a href="order-distributor.html">订单管理</a></li>
+                    <li [ngClass]="{'active':menus.childrenKey=='customer'}"><a href="member.html">顾客管理</a></li>
+                    <li [ngClass]="{'active':menus.childrenKey=='goods'}"><a href="product-distributor.html">商品管理</a></li>
                 </ul>
             </li>
-            <li> <a href="#"><i class="fa fa-gears"></i> <span class="nav-label">设置</span> <span class="fa arrow"></span></a>
+            <li [ngClass]="{'active':menus.parentKey=='config'}">
+                <a href="#"><i class="fa fa-gears"></i> <span class="nav-label">设置</span> <span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level collapse">
-                    <li><a href="setting-info.html">个人信息</a></li>
+                    <li [ngClass]="{'active':menus.childrenKey=='my'}"><a href="setting-info.html">个人信息</a></li>
                 </ul>
             </li>
         </ul>
