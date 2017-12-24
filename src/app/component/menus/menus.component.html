@@ -29,9 +29,15 @@
                 </ul>
             </li>
             <li [ngClass]="{'active':menus.parentKey=='config'}">
-                <a href="#"><i class="fa fa-gears"></i> <span class="nav-label">设置</span> <span class="fa arrow"></span></a>
+                <a href="javascript:;;">
+                    <i class="fa fa-gears"></i>
+                    <span class="nav-label">设置</span>
+                    <span class="fa arrow"></span>
+                </a>
                 <ul class="nav nav-second-level collapse">
-                    <li [ngClass]="{'active':menus.childrenKey=='my'}"><a href="setting-info.html">个人信息</a></li>
+                    <li [ngClass]="{'active':menus.childrenKey=='my'}">
+                        <a routerLink="config/v_my">个人信息</a>
+                    </li>
                 </ul>
             </li>
         </ul>
