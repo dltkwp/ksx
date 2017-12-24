@@ -5,14 +5,24 @@ import { HttpModule } from '@angular/http';
 import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
-import { AuthorizationComponent } from './component/authorization/authorization.component';
 
 import { ROUTES } from './app.router';
+import { AuthorizationComponent } from './component/authorization/authorization.component';
+import { MenusComponent } from './component/menus/menus.component';
+import { OrderComponent } from './component/order/order.component';
+import { ConfigLevelComponent } from './component/config-level/config-level.component';
+import { ConfigCategoryComponent } from './component/config-category/config-category.component';
+import { ConfigMyComponent } from './component/config-my/config-my.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    AuthorizationComponent
+    AuthorizationComponent,
+    MenusComponent,
+    OrderComponent,
+    ConfigLevelComponent,
+    ConfigCategoryComponent,
+    ConfigMyComponent
   ],
   imports: [
     BrowserModule,
