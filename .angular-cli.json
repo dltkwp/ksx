@@ -31,6 +31,7 @@
             "./assets/js/plugins/slimscroll/jquery.slimscroll.min.js",
             "./assets/js/inspinia.js",
             "./assets/js/plugins/pace/pace.min.js"
+
         ],
         "environmentSource": "environments/environment.ts",
         "environments": {
