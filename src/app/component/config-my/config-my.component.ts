@@ -55,8 +55,19 @@ export class ConfigMyComponent implements OnInit {
     };
   }
   baseInfoUpdate(baseInfo: BaseInfo) {
-    // 验证
-    // 提交
+    const userName = baseInfo.userName;
+    const mobile = baseInfo.mobile;
+    const webchat = baseInfo.webchat;
+    const alipay = baseInfo.alipay;
+    const accontPattern = /^(((13[0-9]{1})|(14[0-9]{1})|(15[0-9]{1})|(17[0-9]{1})|(18[0-9]{1}))+\d{8})$/;
+    if (userName === '') {
+      this.toastr.warning('姓名不可为空.', '提示');
+      return false;
+    }
+    if (!accontPattern.test(mobile)) {
+      this.toastr.warning('手机号格式不正确', '提示');
+      return false;
+    }
     console.log(baseInfo);
   }
   passworUpdate(password: Password) {
