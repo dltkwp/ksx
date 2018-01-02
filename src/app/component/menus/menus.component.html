@@ -23,9 +23,9 @@
             </li>
             <li [ngClass]="{'active':menus.parentKey=='fx'}"> <a href="#"><i class="fa fa-sitemap"></i> <span class="nav-label">我是分销商</span> <span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level collapse">
-                    <li [ngClass]="{'active':menus.childrenKey=='order'}"><a href="order-distributor.html">订单管理</a></li>
-                    <li [ngClass]="{'active':menus.childrenKey=='customer'}"><a href="member.html">顾客管理</a></li>
-                    <li [ngClass]="{'active':menus.childrenKey=='goods'}"><a href="product-distributor.html">商品管理</a></li>
+                    <li [ngClass]="{'active':menus.childrenKey=='order'}"><a routerLink="/distributor/v_order">订单管理</a></li>
+                    <li [ngClass]="{'active':menus.childrenKey=='customer'}"><a routerLink="/distributor/v_customer">顾客管理</a></li>
+                    <li [ngClass]="{'active':menus.childrenKey=='goods'}"><a routerLink="/distributor/v_goods">商品管理</a></li>
                 </ul>
             </li>
             <li [ngClass]="{'active':menus.parentKey=='config'}">
