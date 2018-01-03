@@ -16,6 +16,14 @@ import { ConfigLevelComponent } from './component/config-level/config-level.comp
 import { ConfigCategoryComponent } from './component/config-category/config-category.component';
 import { ConfigMyComponent } from './component/config-my/config-my.component';
 import { UserCardComponent } from './component/user-card/user-card.component';
+import { DistributorOrderComponent } from './component/distributor-order/distributor-order.component';
+import { DistributorCustomerComponent } from './component/distributor-customer/distributor-customer.component';
+import { DistributorGoodsComponent } from './component/distributor-goods/distributor-goods.component';
+import { SupplierOrderComponent } from './component/supplier-order/supplier-order.component';
+import { SupplierDistributorComponent } from './component/supplier-distributor/supplier-distributor.component';
+import { SupplierGoodsComponent } from './component/supplier-goods/supplier-goods.component';
+import { SupplierGoodsCategoryComponent } from './component/supplier-goods-category/supplier-goods-category.component';
+import { SupplierDistributorLevelComponent } from './component/supplier-distributor-level/supplier-distributor-level.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +34,15 @@ import { UserCardComponent } from './component/user-card/user-card.component';
     ConfigLevelComponent,
     ConfigCategoryComponent,
     ConfigMyComponent,
-    UserCardComponent
+    UserCardComponent,
+    DistributorOrderComponent,
+    DistributorCustomerComponent,
+    DistributorGoodsComponent,
+    SupplierOrderComponent,
+    SupplierDistributorComponent,
+    SupplierGoodsComponent,
+    SupplierGoodsCategoryComponent,
+    SupplierDistributorLevelComponent,
   ],
   imports: [
     BrowserModule,

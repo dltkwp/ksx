@@ -8,6 +8,9 @@ import { ConfigLevelComponent } from './component/config-level/config-level.comp
 import { ConfigCategoryComponent } from './component/config-category/config-category.component';
 import { ConfigMyComponent } from './component/config-my/config-my.component';
 
+import { DistributorOrderComponent } from './component/distributor-order/distributor-order.component';
+import { DistributorCustomerComponent } from './component/distributor-customer/distributor-customer.component';
+import { DistributorGoodsComponent } from './component/distributor-goods/distributor-goods.component';
 
 export const ROUTES: Routes = [
   { path: '', component: AuthorizationComponent },
@@ -16,5 +19,9 @@ export const ROUTES: Routes = [
   ,
   { path: 'config/v_level', component: ConfigLevelComponent },
   { path: 'config/v_category', component: ConfigCategoryComponent },
-  { path: 'config/v_my', component: ConfigMyComponent }
+  { path: 'config/v_my', component: ConfigMyComponent },
+
+  { path: 'distributor/v_order', component: DistributorOrderComponent },
+  { path: 'distributor/v_customer', component: DistributorCustomerComponent },
+  { path: 'distributor/v_goods', component: DistributorGoodsComponent },
 ];

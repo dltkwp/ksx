@@ -13,7 +13,7 @@
             </li>
             <li [ngClass]="{'active':menus.parentKey=='gys'}">
                 <a href="#"><i class="fa fa-sitemap"></i> <span class="nav-label">我是供应商</span> <span class="fa arrow"></span></a>
-                <ul class="nav nav-second-level collapse">
+                <ul class="nav nav-second-level collapse in">
                     <li [ngClass]="{'active':menus.childrenKey=='order'}"><a href="order.html">订单管理</a></li>
                     <li [ngClass]="{'active':menus.childrenKey=='fxgl'}"><a href="distributor.html">分销商管理</a></li>
                     <li [ngClass]="{'active':menus.childrenKey=='goods'}"><a href="product.html">商品管理</a></li>
@@ -21,11 +21,11 @@
                     <li [ngClass]="{'active':menus.childrenKey=='goods-category'}"><a href="setting-type.html">商品分类设置</a></li>
                 </ul>
             </li>
-            <li [ngClass]="{'active':menus.parentKey=='fx'}"> <a href="#"><i class="fa fa-sitemap"></i> <span class="nav-label">我是分销商</span> <span class="fa arrow"></span></a>
-                <ul class="nav nav-second-level collapse">
-                    <li [ngClass]="{'active':menus.childrenKey=='order'}"><a routerLink="/distributor/v_order">订单管理</a></li>
-                    <li [ngClass]="{'active':menus.childrenKey=='customer'}"><a routerLink="/distributor/v_customer">顾客管理</a></li>
-                    <li [ngClass]="{'active':menus.childrenKey=='goods'}"><a routerLink="/distributor/v_goods">商品管理</a></li>
+            <li [ngClass]="{'active':menus.parentKey=='distributor'}"> <a href="#"><i class="fa fa-sitemap"></i> <span class="nav-label">我是分销商</span> <span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level collapse in">
+                    <li [ngClass]="{'active':menus.childrenKey=='distributorOrder'}"><a routerLink="/distributor/v_order">订单管理</a></li>
+                    <li [ngClass]="{'active':menus.childrenKey=='distributorCustomer'}"><a routerLink="/distributor/v_customer">顾客管理</a></li>
+                    <li [ngClass]="{'active':menus.childrenKey=='distributorGoods'}"><a routerLink="/distributor/v_goods">商品管理</a></li>
                 </ul>
             </li>
             <li [ngClass]="{'active':menus.parentKey=='config'}">
@@ -34,9 +34,9 @@
                     <span class="nav-label">设置</span>
                     <span class="fa arrow"></span>
                 </a>
-                <ul class="nav nav-second-level collapse">
+                <ul class="nav nav-second-level collapse in">
                     <li [ngClass]="{'active':menus.childrenKey=='my'}">
-                        <a routerLink="config/v_my">个人信息</a>
+                        <a routerLink="/config/v_my">个人信息</a>
                     </li>
                 </ul>
             </li>

@@ -1,3 +1,73 @@
-<p>
-  distributor-customer works!
-</p>
+<div id="wrapper">
+    <app-menus [menus]='menus'></app-menus>
+    <div id="page-wrapper" class="gray-bg">
+        <app-user-card></app-user-card>
+        <div class="wrapper wrapper-content animated fadeInRight">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="ibox-content m-b-sm border-bottom">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label class="control-label" for="date_added">顾客</label>
+                                    <input type="text" value="" placeholder="顾客姓名/电话" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-sm-4"> </div>
+                        </div>
+                    </div>
+                    <div class="ibox-title"> 顾客列表 </div>
+                    <div class="ibox-content">
+                        <div class="row">
+                            <div class="col-sm-9 m-b-xs">
+                                <div class="btn btn-primary btn-sm" data-toggle="modal" href="#distroibutor-add">新增顾客</div>
+                            </div>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>姓名 </th>
+                                        <th>电话 </th>
+                                        <th>收货地址 </th>
+                                        <th>备注 </th>
+                                        <th>订单数 </th>
+                                        <th>总支付金额 </th>
+                                        <th>操作</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>王杰</td>
+                                        <td>15242612898</td>
+                                        <td>辽宁省大连市高新园区创业E港</td>
+                                        <td></td>
+                                        <td>20</td>
+                                        <td>￥3200</td>
+                                        <td>
+                                            <div class="btn btn-sm btn-default" data-toggle="modal" href="#modal-send">历史订单</div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td>张雨濛</td>
+                                        <td>13238078321</td>
+                                        <td>辽宁省大连市高新园区创业E港<br> 辽宁省大连市高新园区招商兰溪谷 </td>
+                                        <td></td>
+                                        <td>10</td>
+                                        <td>￥1000</td>
+                                        <td>
+                                            <div class="btn btn-sm btn-default" data-toggle="modal" href="#modal-send">历史订单</div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
