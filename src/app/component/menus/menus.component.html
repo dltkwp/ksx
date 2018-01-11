@@ -14,11 +14,11 @@
             <li [ngClass]="{'active':menus.parentKey=='gys'}">
                 <a href="#"><i class="fa fa-sitemap"></i> <span class="nav-label">我是供应商</span> <span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level collapse in">
-                    <li [ngClass]="{'active':menus.childrenKey=='order'}"><a routerLink="/supplier/v_order">订单管理</a></li>
-                    <li [ngClass]="{'active':menus.childrenKey=='fxgl'}"><a routerLink="/supplier/v_distributor">分销商管理</a></li>
-                    <li [ngClass]="{'active':menus.childrenKey=='goods'}"><a routerLink="/supplier/v_goods">商品管理</a></li>
-                    <li [ngClass]="{'active':menus.childrenKey=='level'}"><a routerLink="/supplier/v_level">分销等级设置</a></li>
-                    <li [ngClass]="{'active':menus.childrenKey=='goods-category'}"><a routerLink="/supplier/v_category">商品分类设置</a></li>
+                    <li [ngClass]="{'active':menus.childrenKey=='supplierOrder'}"><a routerLink="/supplier/v_order">订单管理</a></li>
+                    <li [ngClass]="{'active':menus.childrenKey=='supplierManager'}"><a routerLink="/supplier/v_distributor">分销商管理</a></li>
+                    <li [ngClass]="{'active':menus.childrenKey=='supplierGoods'}"><a routerLink="/supplier/v_goods">商品管理</a></li>
+                    <li [ngClass]="{'active':menus.childrenKey=='supplierLevel'}"><a routerLink="/supplier/v_level">分销等级设置</a></li>
+                    <li [ngClass]="{'active':menus.childrenKey=='supplierGoodsCategory'}"><a routerLink="/supplier/v_category">商品分类设置</a></li>
                 </ul>
             </li>
             <li [ngClass]="{'active':menus.parentKey=='distributor'}"> <a href="#"><i class="fa fa-sitemap"></i> <span class="nav-label">我是分销商</span> <span class="fa arrow"></span></a>

@@ -1,61 +1,70 @@
-<div class="row">
-    <div class="col-lg-12">
+<div id="wrapper">
+    <app-menus [menus]='menus'></app-menus>
+    <div id="page-wrapper" class="gray-bg">
+        <app-user-card></app-user-card>
+        <div class="wrapper wrapper-content animated fadeInRight">
 
-        <div class="ibox float-e-margins">
-            <div class="ibox-title">
-                分销等级设置
-            </div>
-            <div class="ibox-content">
-                <div class="row">
-                    <div class="col-sm-9 m-b-xs">
-                        <div class="btn btn-primary btn-sm" data-toggle="modal" href="#level-add">新增分销等级</div>
+            <div class="row">
+                <div class="col-lg-12">
+
+                    <div class="ibox float-e-margins">
+                        <div class="ibox-title">
+                            分销等级设置
+                        </div>
+                        <div class="ibox-content">
+                            <div class="row">
+                                <div class="col-sm-9 m-b-xs">
+                                    <div class="btn btn-primary btn-sm" data-toggle="modal" href="#level-add">新增分销等级</div>
+                                </div>
+
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>等级</th>
+                                            <th>默认折扣</th>
+                                            <th>加盟费</th>
+                                            <th>操作</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>一级分销商</td>
+                                            <td>6折</td>
+                                            <td>￥100</td>
+                                            <td>
+                                                <div class="btn btn-sm btn-default m-r-xs">编辑</div>
+                                                <div class="btn btn-sm btn-default">删除</div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>2</td>
+                                            <td>二级分销商</td>
+                                            <td>7折</td>
+                                            <td>￥80</td>
+                                            <td>
+                                                <div class="btn btn-sm btn-default m-r-xs">编辑</div>
+                                                <div class="btn btn-sm btn-default">删除</div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>3</td>
+                                            <td>三级分销商</td>
+                                            <td>8折</td>
+                                            <td>￥60</td>
+                                            <td>
+                                                <div class="btn btn-sm btn-default m-r-xs">编辑</div>
+                                                <div class="btn btn-sm btn-default">删除</div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                     </div>
-
-                </div>
-                <div class="table-responsive">
-                    <table class="table table-striped">
-                        <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>等级</th>
-                                <th>默认折扣</th>
-                                <th>加盟费</th>
-                                <th>操作</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>一级分销商</td>
-                                <td>6折</td>
-                                <td>￥100</td>
-                                <td>
-                                    <div class="btn btn-sm btn-default m-r-xs">编辑</div>
-                                    <div class="btn btn-sm btn-default">删除</div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>二级分销商</td>
-                                <td>7折</td>
-                                <td>￥80</td>
-                                <td>
-                                    <div class="btn btn-sm btn-default m-r-xs">编辑</div>
-                                    <div class="btn btn-sm btn-default">删除</div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>三级分销商</td>
-                                <td>8折</td>
-                                <td>￥60</td>
-                                <td>
-                                    <div class="btn btn-sm btn-default m-r-xs">编辑</div>
-                                    <div class="btn btn-sm btn-default">删除</div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
                 </div>
             </div>
         </div>

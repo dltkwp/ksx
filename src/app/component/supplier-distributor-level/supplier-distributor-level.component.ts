@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Menus } from '../../interface/menus.interface';
 
 @Component({
   selector: 'app-supplier-distributor-level',
@@ -6,10 +7,14 @@ import { Component, OnInit } from '@angular/core';
   styles: []
 })
 export class SupplierDistributorLevelComponent implements OnInit {
-
+  public menus: Menus;
   constructor() { }
 
   ngOnInit() {
+    this.menus = {
+      parentKey: 'supplier',
+      childrenKey: 'supplierLevel'
+    };
   }
 
 }

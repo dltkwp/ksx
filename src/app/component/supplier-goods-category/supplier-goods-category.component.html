@@ -1,57 +1,65 @@
-<div class="row">
-    <div class="col-lg-12">
+<div id="wrapper">
+    <app-menus [menus]='menus'></app-menus>
+    <div id="page-wrapper" class="gray-bg">
+        <app-user-card></app-user-card>
+        <div class="wrapper wrapper-content animated fadeInRight">
+            <div class="row">
+                <div class="col-lg-12">
 
-        <div class="ibox float-e-margins">
-            <div class="ibox-title">
-                分类设置
-            </div>
-            <div class="ibox-content">
-                <div class="row">
-                    <div class="col-sm-9 m-b-xs">
-                        <div class="btn btn-primary btn-sm" data-toggle="modal" href="#type-add">新增分类</div>
+                    <div class="ibox float-e-margins">
+                        <div class="ibox-title">
+                            分类设置
+                        </div>
+                        <div class="ibox-content">
+                            <div class="row">
+                                <div class="col-sm-9 m-b-xs">
+                                    <div class="btn btn-primary btn-sm" data-toggle="modal" href="#type-add">新增分类</div>
+                                </div>
+
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>分类名称</th>
+
+                                            <th>操作</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>玩具</td>
+
+                                            <td>
+                                                <div class="btn btn-sm btn-default m-r-xs">编辑</div>
+                                                <div class="btn btn-sm btn-default">删除</div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>2</td>
+                                            <td>衣服</td>
+
+                                            <td>
+                                                <div class="btn btn-sm btn-default m-r-xs">编辑</div>
+                                                <div class="btn btn-sm btn-default">删除</div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>3</td>
+                                            <td>益智类</td>
+
+                                            <td>
+                                                <div class="btn btn-sm btn-default m-r-xs">编辑</div>
+                                                <div class="btn btn-sm btn-default">删除</div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                     </div>
-
-                </div>
-                <div class="table-responsive">
-                    <table class="table table-striped">
-                        <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>分类名称</th>
-
-                                <th>操作</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>玩具</td>
-
-                                <td>
-                                    <div class="btn btn-sm btn-default m-r-xs">编辑</div>
-                                    <div class="btn btn-sm btn-default">删除</div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>衣服</td>
-
-                                <td>
-                                    <div class="btn btn-sm btn-default m-r-xs">编辑</div>
-                                    <div class="btn btn-sm btn-default">删除</div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>益智类</td>
-
-                                <td>
-                                    <div class="btn btn-sm btn-default m-r-xs">编辑</div>
-                                    <div class="btn btn-sm btn-default">删除</div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
                 </div>
             </div>
         </div>
