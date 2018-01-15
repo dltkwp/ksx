@@ -6,62 +6,65 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="ibox-content m-b-sm border-bottom">
-                        <div class="row">
-                            <div class="col-sm-4">
-                                <div class="form-group">
-                                    <label class="control-label" for="date_added">订单时间</label>
-                                    <select class="form-control">
-                                        <option>全部</option>
-                                        <option>今日</option>
-                                        <option>本周</option>
-                                        <option>本月</option>
-                                        <option>其它时间</option>
+                        <form #form="ngForm">
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="control-label" for="date_added">订单时间</label>
+                                        <select class="form-control" name="time" [(ngModel)]="searchMode.time" maxlength="8">
+                                            <option value="all">全部</option>
+                                            <option value="today">今日</option>
+                                            <option value="wee,">本周</option>
+                                            <option value="month">本月</option>
+                                            <option value="other">其它时间</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="control-label" for="date_added" name="payType" [(ngModel)]="searchMode.payType">支付方式</label>
+                                        <select class="form-control">
+                                        <option value="all">全部</option>
+                                        <option value="no-pay">暂未付款</option>
+                                        <option value="alipay">支付宝</option>
+                                        <option value="weixin">微信</option>
                                     </select>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-sm-4">
-                                <div class="form-group">
-                                    <label class="control-label" for="date_added">支付方式</label>
-                                    <select class="form-control">
-                                        <option>全部</option>
-                                        <option>暂未付款</option>
-                                        <option>支付宝</option>
-                                        <option>微信</option>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="control-label" for="date_added">状态</label>
+                                        <select class="form-control" name="status" [(ngModel)]="searchMode.status">
+                                        <option value="all">全部</option>
+                                        <option value="wait-send">等待发货</option>
+                                        <option value="sended">已发货</option>
+                                        <option value="sign">已签收</option>
                                     </select>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-sm-4">
-                                <div class="form-group">
-                                    <label class="control-label" for="date_added">状态</label>
-                                    <select class="form-control">
-                                        <option>全部</option>
-                                        <option>等待发货</option>
-                                        <option>已发货</option>
-                                        <option>已签收</option>
-                                    </select>
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="control-label" for="order_id">订单内容</label>
+                                        <input type="text" placeholder="搜索产品名称" class="form-control" name="content" [(ngModel)]="searchMode.content">
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="control-label" for="status">收货人</label>
+                                        <input type="text" value="" placeholder="收货人姓名/电话" class="form-control" name="receiver" [(ngModel)]="searchMode.receiver">
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="control-label" for="customer">分销商</label>
+                                        <input type="text" value="" placeholder="分销商姓名/电话" class="form-control" name="supplier" [(ngModel)]="searchMode.supplier">
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-4">
-                                <div class="form-group">
-                                    <label class="control-label" for="order_id">订单内容</label>
-                                    <input type="text" value="" placeholder="搜索产品名称" class="form-control">
-                                </div>
-                            </div>
-                            <div class="col-sm-4">
-                                <div class="form-group">
-                                    <label class="control-label" for="status">收货人</label>
-                                    <input type="text" value="" placeholder="收货人姓名/电话" class="form-control">
-                                </div>
-                            </div>
-                            <div class="col-sm-4">
-                                <div class="form-group">
-                                    <label class="control-label" for="customer">分销商</label>
-                                    <input type="text" value="" placeholder="分销商姓名/电话" class="form-control">
-                                </div>
-                            </div>
-                        </div>
+                            <button class="btn purple" (click)="btnClick(form.value)"> &nbsp;&nbsp;搜索&nbsp;&nbsp;</button>
+                        </form>
                     </div>
                     <div class="row">
                         <div class="col-lg-12">
