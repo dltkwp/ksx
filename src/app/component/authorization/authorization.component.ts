@@ -43,8 +43,9 @@ export class AuthorizationComponent implements OnInit {
             .then(reponse => {
                 const res = reponse.json();
                 switch (res.code) {
-                    case '100200': {
-                        this.toast.success('登陆成功.', '提示');
+                    case 1000200: {
+                        localStorage.setItem('ksx-token-c', res.token);
+                        window.location.href = '/supplier/v_order';
                     } break;
                     default: {
                         this.toast.error(res.msg, '提示');
