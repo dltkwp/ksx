@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { AuthorizationComponent } from './component/authorization/authorization.component';
+import { RegistComponent } from './component/regist/regist.component';
 
 import { ConfigLevelComponent } from './component/config-level/config-level.component';
 import { ConfigCategoryComponent } from './component/config-category/config-category.component';
@@ -22,9 +23,9 @@ import { SupplierOrderComponent } from './component/supplier-order/supplier-orde
 
 export const ROUTES: Routes = [
   { path: '', component: AuthorizationComponent },
-  { path: 'v_login', component: AuthorizationComponent }
+  { path: 'v_login', component: AuthorizationComponent },
+  { path: 'v_regist', component: RegistComponent },
 
-  ,
   { path: 'config/v_level', component: ConfigLevelComponent },
   { path: 'config/v_category', component: ConfigCategoryComponent },
   { path: 'config/v_my', component: ConfigMyComponent },

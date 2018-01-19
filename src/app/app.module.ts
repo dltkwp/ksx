@@ -1,15 +1,12 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HTTP_INTERCEPTORS  } from '@angular/common/http';
 import { HttpModule  } from '@angular/http';
 import { RouterModule, Routes } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 
 import { AppComponent } from './app.component';
-import { MyHttpInterceptor } from './interceptor/MyHttpInterceptor';
-
 
 import { ROUTES } from './app.router';
 import { AuthorizationComponent } from './component/authorization/authorization.component';
@@ -27,6 +24,7 @@ import { SupplierDistributorComponent } from './component/supplier-distributor/s
 import { SupplierGoodsComponent } from './component/supplier-goods/supplier-goods.component';
 import { SupplierGoodsCategoryComponent } from './component/supplier-goods-category/supplier-goods-category.component';
 import { SupplierDistributorLevelComponent } from './component/supplier-distributor-level/supplier-distributor-level.component';
+import { RegistComponent } from './component/regist/regist.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +44,7 @@ import { SupplierDistributorLevelComponent } from './component/supplier-distribu
     SupplierGoodsComponent,
     SupplierGoodsCategoryComponent,
     SupplierDistributorLevelComponent,
+    RegistComponent,
   ],
   imports: [
     BrowserModule,
@@ -55,7 +54,7 @@ import { SupplierDistributorLevelComponent } from './component/supplier-distribu
     ToastrModule.forRoot(),
     RouterModule.forRoot(ROUTES)
   ],
-  providers: [{ provide: HTTP_INTERCEPTORS , useClass: MyHttpInterceptor, multi: true }],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
