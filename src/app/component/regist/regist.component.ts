@@ -40,28 +40,28 @@ export class RegistComponent implements OnInit {
       return false;
     }
 
-    this.http.post('http://113.235.125.190:8081/login',
-    {
+    this.http.post('http://113.235.125.190:8081/user',
+      {
         username: rt.userName,
         mobile: rt.mobile,
         password: rt.password
-    } )
-    .toPromise()
-    .then(reponse => {
+      })
+      .toPromise()
+      .then(reponse => {
         const res = reponse.json();
         switch (res.code) {
-            case 1000200: {
-                localStorage.setItem('ksx-token-c', res.token);
-                window.location.href = '/supplier/v_order';
-            } break;
-            default: {
-                this.toast.error(res.msg, '提示');
-            }
+          case 1000200: {
+            this.toast.success('注册成功', '提示');
+            window.location.href = '/v_login';
+          } break;
+          default: {
+            this.toast.error(res.msg, '提示');
+          }
         }
-    })
-    .catch((error) => {
+      })
+      .catch((error) => {
         this.toast.error(error.messsage, '提示');
-    });
+      });
 
   }
 
