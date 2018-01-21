@@ -29,6 +29,12 @@ export class ConfigMyComponent implements OnInit {
       newPwd: '',
       repPwd: ''
     };
+    this.baseInfo = {
+      userName: '',
+      mobile: '',
+      webchat: '',
+      alipay: ''
+    };
     this.baseInfoQuery();
   }
 
@@ -46,13 +52,23 @@ export class ConfigMyComponent implements OnInit {
   }
 
   baseInfoQuery() {
-    console.log('查询登陆人的基本信息,并赋值');
-    this.baseInfo = {
-      userName: 'userName',
-      mobile: 'mobile',
-      webchat: 'webchat',
-      alipay: 'alipay'
-    };
+
+    this.http.get('http://39.106.65.215:8081/EasyTime/user', {
+      headers: {
+        'Authorization': localStorage.getItem('ksx-token-c')
+      }
+    })
+    .toPromise()
+    .then(reponse => {
+      const info = reponse.json();
+      this.baseInfo.userName = info.realname||'';
+      this.baseInfo.mobile = info.phone||'';
+      this.baseInfo.webchat = info.wechart||'';
+      this.baseInfo.alipay = info.alipay||'';
+    })
+    .catch((error) => {
+      console.error(error);
+    });
   }
   baseInfoUpdate(baseInfo: BaseInfo) {
     const userName = baseInfo.userName;
@@ -68,7 +84,30 @@ export class ConfigMyComponent implements OnInit {
       this.toastr.warning('手机号格式不正确', '提示');
       return false;
     }
-    console.log(baseInfo);
+
+    this.http.put('http://39.106.65.215:8081/EasyTime/user',
+      {
+        'alipay': alipay,
+        'phone': mobile,
+        'realname': userName,
+        'wechart': webchat
+      })
+      .toPromise()
+      .then(reponse => {
+        const res = reponse.json();
+        switch (res.code) {
+          case 1000200: {
+            localStorage.setItem('ksx-token-c', res.token);
+            window.location.href = '/supplier/v_order';
+          } break;
+          default: {
+            this.toastr.error(res.msg, '提示');
+          }
+        }
+      })
+      .catch((error) => {
+         this.toastr.error(error.messsage, '提示');
+      });
   }
   passworUpdate(password: Password) {
     const oldPwd = password.oldPwd;
@@ -91,6 +130,30 @@ export class ConfigMyComponent implements OnInit {
       this.toastr.warning('两次输入的密码不一致', '提示');
       return false;
     }
-    console.log(password);
+    
+    this.http.put('http://39.106.65.215:8081/EasyTime/user',
+    {
+      'alipay': alipay,
+      'phone': mobile,
+      'realname': userName,
+      'wechart': webchat
+    })
+    .toPromise()
+    .then(reponse => {
+      const res = reponse.json();
+      switch (res.code) {
+        case 1000200: {
+          localStorage.setItem('ksx-token-c', res.token);
+          window.location.href = '/supplier/v_order';
+        } break;
+        default: {
+          this.toastr.error(res.msg, '提示');
+        }
+      }
+    })
+    .catch((error) => {
+       this.toastr.error(error.messsage, '提示');
+    });
+
   }
 }

@@ -16,11 +16,15 @@ export class MenusComponent implements OnInit {
   }
 
   getLoginUser() {
-
-    this.http.get('http://113.235.125.190:8081/user', {})
+    this.http.get('http://39.106.65.215:8081/EasyTime/user', {
+      headers: {
+        'Authorization': localStorage.getItem('ksx-token-c')
+      }
+    })
       .toPromise()
       .then(reponse => {
         const res = reponse.json();
+        localStorage.setItem('BaseUserInfo', res);
         console.log(res);
       })
       .catch((error) => {

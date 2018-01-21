@@ -40,10 +40,10 @@ export class RegistComponent implements OnInit {
       return false;
     }
 
-    this.http.post('http://113.235.125.190:8081/user',
+    this.http.post('http://39.106.65.215:8081/EasyTime/user',
       {
         username: rt.userName,
-        mobile: rt.mobile,
+        phone: rt.mobile,
         password: rt.password
       })
       .toPromise()
