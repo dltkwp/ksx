@@ -30,7 +30,7 @@ export class AuthorizationComponent implements OnInit {
             this.toast.warning('密码格式不正确.', '提示');
             return false;
         }
-        this.http.post('http://39.106.65.215:8081/EasyTime/login',
+        this.http.post('http://113.235.119.27:8081/login',
             {
                 username: this.authorization.account,
                 password: this.authorization.password

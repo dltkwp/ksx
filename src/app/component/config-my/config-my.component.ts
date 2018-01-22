@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Http } from '@angular/http';
+import { Http, Headers } from '@angular/http';
 import { ToastrService } from 'ngx-toastr';
 
 import { Menus } from '../../interface/menus.interface';
@@ -52,23 +52,26 @@ export class ConfigMyComponent implements OnInit {
   }
 
   baseInfoQuery() {
+    const token = localStorage.getItem('ksx-token-c');
+    if (token) {
+      const heder = new Headers();
+      heder.append('Authorization', token);
+      this.http.get('http://113.235.119.27:8081/user', {
+        headers: heder
+      })
+        .toPromise()
+        .then(reponse => {
+          const info = reponse.json();
+          this.baseInfo.userName = info.realname || '';
+          this.baseInfo.mobile = info.phone || '';
+          this.baseInfo.webchat = info.wechart || '';
+          this.baseInfo.alipay = info.alipay || '';
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    }
 
-    this.http.get('http://39.106.65.215:8081/EasyTime/user', {
-      headers: {
-        'Authorization': localStorage.getItem('ksx-token-c')
-      }
-    })
-    .toPromise()
-    .then(reponse => {
-      const info = reponse.json();
-      this.baseInfo.userName = info.realname||'';
-      this.baseInfo.mobile = info.phone||'';
-      this.baseInfo.webchat = info.wechart||'';
-      this.baseInfo.alipay = info.alipay||'';
-    })
-    .catch((error) => {
-      console.error(error);
-    });
   }
   baseInfoUpdate(baseInfo: BaseInfo) {
     const userName = baseInfo.userName;
@@ -84,30 +87,35 @@ export class ConfigMyComponent implements OnInit {
       this.toastr.warning('手机号格式不正确', '提示');
       return false;
     }
+    const token = localStorage.getItem('ksx-token-c');
+    if (token) {
+      const heder = new Headers();
+      heder.append('Authorization', token);
 
-    this.http.put('http://39.106.65.215:8081/EasyTime/user',
-      {
-        'alipay': alipay,
-        'phone': mobile,
-        'realname': userName,
-        'wechart': webchat
-      })
-      .toPromise()
-      .then(reponse => {
-        const res = reponse.json();
-        switch (res.code) {
-          case 1000200: {
-            localStorage.setItem('ksx-token-c', res.token);
-            window.location.href = '/supplier/v_order';
-          } break;
-          default: {
-            this.toastr.error(res.msg, '提示');
+
+      this.http.put('http://113.235.119.27:8081/user',
+        {
+          'alipay': alipay,
+          'phone': mobile,
+          'realname': userName,
+          'wechart': webchat
+        }, { headers: heder })
+        .toPromise()
+        .then(reponse => {
+          const res = reponse.json();
+          switch (res.code) {
+            case 200: {
+              this.toastr.error('操作成功.', '提示');
+            } break;
+            default: {
+              this.toastr.error(res.msg, '提示');
+            }
           }
-        }
-      })
-      .catch((error) => {
-         this.toastr.error(error.messsage, '提示');
-      });
+        })
+        .catch((error) => {
+          this.toastr.error(error.messsage, '提示');
+        });
+    }
   }
   passworUpdate(password: Password) {
     const oldPwd = password.oldPwd;
@@ -130,30 +138,32 @@ export class ConfigMyComponent implements OnInit {
       this.toastr.warning('两次输入的密码不一致', '提示');
       return false;
     }
-    
-    this.http.put('http://39.106.65.215:8081/EasyTime/user',
-    {
-      'alipay': alipay,
-      'phone': mobile,
-      'realname': userName,
-      'wechart': webchat
-    })
-    .toPromise()
-    .then(reponse => {
-      const res = reponse.json();
-      switch (res.code) {
-        case 1000200: {
-          localStorage.setItem('ksx-token-c', res.token);
-          window.location.href = '/supplier/v_order';
-        } break;
-        default: {
-          this.toastr.error(res.msg, '提示');
-        }
-      }
-    })
-    .catch((error) => {
-       this.toastr.error(error.messsage, '提示');
-    });
-
+    const token = localStorage.getItem('ksx-token-c');
+    if (token) {
+      const heder = new Headers();
+      heder.append('Authorization', token);
+      // http://39.106.65.215:8081/EasyTime/user
+      this.http.put('http://113.235.119.27:8081/updatePassword',
+        {
+          'oldPassword': oldPwd,
+          'newPassword1': newPwd,
+          'newPassword2': newPwd
+        }, { headers: heder })
+        .toPromise()
+        .then(reponse => {
+          const res = reponse.json();
+          switch (res.code) {
+            case 200: {
+              this.toastr.error('操作成功.', '提示');
+            } break;
+            default: {
+              this.toastr.error(res.msg, '提示');
+            }
+          }
+        })
+        .catch((error) => {
+          this.toastr.error(error.messsage, '提示');
+        });
+    }
   }
 }
