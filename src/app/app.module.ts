@@ -13,7 +13,6 @@ import { AuthorizationComponent } from './component/authorization/authorization.
 import { MenusComponent } from './component/menus/menus.component';
 import { OrderComponent } from './component/order/order.component';
 import { ConfigLevelComponent } from './component/config-level/config-level.component';
-import { ConfigCategoryComponent } from './component/config-category/config-category.component';
 import { ConfigMyComponent } from './component/config-my/config-my.component';
 import { UserCardComponent } from './component/user-card/user-card.component';
 import { DistributorOrderComponent } from './component/distributor-order/distributor-order.component';
@@ -33,7 +32,6 @@ import { RegistComponent } from './component/regist/regist.component';
     MenusComponent,
     OrderComponent,
     ConfigLevelComponent,
-    ConfigCategoryComponent,
     ConfigMyComponent,
     UserCardComponent,
     DistributorOrderComponent,

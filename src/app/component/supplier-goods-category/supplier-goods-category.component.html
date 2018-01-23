@@ -13,7 +13,7 @@
                         <div class="ibox-content">
                             <div class="row">
                                 <div class="col-sm-9 m-b-xs">
-                                    <div class="btn btn-primary btn-sm" data-toggle="modal" href="#type-add">新增分类</div>
+                                    <div class="btn btn-primary btn-sm" (click)="showSaveModal()" href="javascript:;;">新增分类</div>
                                 </div>
 
                             </div>
@@ -23,36 +23,16 @@
                                         <tr>
                                             <th>#</th>
                                             <th>分类名称</th>
-
                                             <th>操作</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>玩具</td>
-
+                                        <tr *ngFor="let item of categoryList; index as i;">
+                                            <td>{{i+1}}</td>
+                                            <td>{{item.categoriesName}}</td>
                                             <td>
-                                                <div class="btn btn-sm btn-default m-r-xs">编辑</div>
-                                                <div class="btn btn-sm btn-default">删除</div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>2</td>
-                                            <td>衣服</td>
-
-                                            <td>
-                                                <div class="btn btn-sm btn-default m-r-xs">编辑</div>
-                                                <div class="btn btn-sm btn-default">删除</div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>3</td>
-                                            <td>益智类</td>
-
-                                            <td>
-                                                <div class="btn btn-sm btn-default m-r-xs">编辑</div>
-                                                <div class="btn btn-sm btn-default">删除</div>
+                                                <div (click)="showEditModal(i)" class="btn btn-sm btn-default m-r-xs">编辑</div>
+                                                <div (click)="showDeleteConfirm(i)" class="btn btn-sm btn-default">删除</div>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -61,6 +41,86 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="divCategorySaveModal" class="modal fade" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title">新增分类</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <form role="form" #form="ngForm">
+                            <div class="form-group">
+                                <label>分类名称*</label>
+                                <input type="text" name="categoryName" [(ngModel)]="categoryName" placeholder="请输入分销名称" class="form-control" maxlength="15">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" [disabled]="loading" (click)="saveCategoryName(form.value)" class="btn btn-primary">保存</button>
+                <button type="button" class="btn btn-white" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="divCategoryEditModal" class="modal fade" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title">新增分类</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <form role="form" #form="ngForm">
+                            <div class="form-group">
+                                <label>分类名称*</label>
+                                <input type="text" name="categoryName" [(ngModel)]="categoryName" placeholder="请输入分销名称" class="form-control" maxlength="15">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" [disabled]="loading" (click)="editCategoryName(form.value)" class="btn btn-primary">保存</button>
+                <button type="button" class="btn btn-white" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="divDeleteConfirm" class="modal fade" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title">温馨提示</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <form role="form">
+                            <div class="form-group">
+                                确定是否删除该信息??
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" [disabled]="loading" (click)="deleteCategoryName()" class="btn btn-primary">确定</button>
+                <button type="button" class="btn btn-white" data-dismiss="modal">关闭</button>
             </div>
         </div>
     </div>

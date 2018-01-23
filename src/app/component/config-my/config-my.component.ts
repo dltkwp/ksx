@@ -15,6 +15,7 @@ export class ConfigMyComponent implements OnInit {
   public menus: Menus;
   public baseInfo: BaseInfo;
   public password: Password;
+  public loading: boolean;
 
   constructor(private http: Http,
     private toastr: ToastrService) { }
@@ -35,6 +36,7 @@ export class ConfigMyComponent implements OnInit {
       webchat: '',
       alipay: ''
     };
+    this.loading = false;
     this.baseInfoQuery();
   }
 
@@ -56,7 +58,7 @@ export class ConfigMyComponent implements OnInit {
     if (token) {
       const heder = new Headers();
       heder.append('Authorization', token);
-      this.http.get('http://113.235.119.27:8081/user', {
+      this.http.get('http://39.106.65.215:8081/EasyTime/user', {
         headers: heder
       })
         .toPromise()
@@ -92,8 +94,8 @@ export class ConfigMyComponent implements OnInit {
       const heder = new Headers();
       heder.append('Authorization', token);
 
-
-      this.http.put('http://113.235.119.27:8081/user',
+      this.loading = true;
+      this.http.put('http://39.106.65.215:8081/EasyTime/user',
         {
           'alipay': alipay,
           'phone': mobile,
@@ -111,8 +113,10 @@ export class ConfigMyComponent implements OnInit {
               this.toastr.error(res.msg, '提示');
             }
           }
+          this.loading = false;
         })
         .catch((error) => {
+          this.loading = false;
           this.toastr.error(error.messsage, '提示');
         });
     }
@@ -142,8 +146,9 @@ export class ConfigMyComponent implements OnInit {
     if (token) {
       const heder = new Headers();
       heder.append('Authorization', token);
+      this.loading = true;
       // http://39.106.65.215:8081/EasyTime/user
-      this.http.put('http://113.235.119.27:8081/updatePassword',
+      this.http.post('http://39.106.65.215:8081/EasyTime/updatePassword',
         {
           'oldPassword': oldPwd,
           'newPassword1': newPwd,
@@ -155,14 +160,20 @@ export class ConfigMyComponent implements OnInit {
           switch (res.code) {
             case 200: {
               this.toastr.error('操作成功.', '提示');
+              setTimeout(function () {
+                localStorage.setItem('ksx-token-c', '');
+                window.location.href = '/v_login';
+              }, 1000);
             } break;
             default: {
               this.toastr.error(res.msg, '提示');
             }
           }
+          this.loading = false;
         })
         .catch((error) => {
           this.toastr.error(error.messsage, '提示');
+          this.loading = false;
         });
     }
   }

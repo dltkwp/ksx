@@ -6,7 +6,6 @@ import { AuthorizationComponent } from './component/authorization/authorization.
 import { RegistComponent } from './component/regist/regist.component';
 
 import { ConfigLevelComponent } from './component/config-level/config-level.component';
-import { ConfigCategoryComponent } from './component/config-category/config-category.component';
 import { ConfigMyComponent } from './component/config-my/config-my.component';
 
 import { DistributorOrderComponent } from './component/distributor-order/distributor-order.component';
@@ -27,7 +26,6 @@ export const ROUTES: Routes = [
   { path: 'v_regist', component: RegistComponent },
 
   { path: 'config/v_level', component: ConfigLevelComponent },
-  { path: 'config/v_category', component: ConfigCategoryComponent },
   { path: 'config/v_my', component: ConfigMyComponent },
 
   { path: 'distributor/v_order', component: DistributorOrderComponent },
