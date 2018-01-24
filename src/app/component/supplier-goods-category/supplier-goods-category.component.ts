@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 import { Http, Headers } from '@angular/http';
 import { ToastrService } from 'ngx-toastr';
 import { Menus } from '../../interface/menus.interface';
 import { SupplierCategory } from '../../class/SupplierCategory';
 
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { BsModalService } from 'ngx-bootstrap/modal';
+import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
 
 @Component({
   selector: 'app-supplier-goods-category',
@@ -19,12 +20,11 @@ export class SupplierGoodsCategoryComponent implements OnInit {
   public loading: Boolean;
   public index: number;
   public showEmpty: Boolean;
-
-  public modal;
+  public modalRef: BsModalRef;
 
   constructor(private http: Http,
     private toastr: ToastrService,
-    private modalService: NgbModal) { }
+    private modalService: BsModalService) { }
 
   ngOnInit() {
     this.menus = {
@@ -37,9 +37,9 @@ export class SupplierGoodsCategoryComponent implements OnInit {
     this.showEmpty = false;
   }
 
-  showSaveModal(categorySaveTpl) {
+  showSaveModal(template: TemplateRef<any>) {
     this.categoryName = '';
-    this.modal = this.modalService.open(categorySaveTpl);
+    this.modalRef = this.modalService.show(template);
   }
   saveCategoryName(category: SupplierCategory) {
     const name = $.trim(category.categoryName);
@@ -62,7 +62,7 @@ export class SupplierGoodsCategoryComponent implements OnInit {
           const res = reponse.json();
           switch (res.code) {
             case 200: {
-              this.modal.close();
+              this.modalRef.hide();
               this.toastr.error('操作成功.', '提示');
               this.queryCategoryList();
             } break;
@@ -79,12 +79,12 @@ export class SupplierGoodsCategoryComponent implements OnInit {
     }
   }
 
-  showEditModal(_index, categoryEditTpl) {
+  showEditModal(_index, template: TemplateRef<any>) {
     this.index = _index;
     const cur = this.categoryList[_index];
     if (cur) {
       this.categoryName = cur.categoryName;
-      this.modal = this.modalService.open(categoryEditTpl);
+      this.modalRef = this.modalService.show(template);
     }
   }
   editCategoryName(category: SupplierCategory) {
@@ -111,7 +111,7 @@ export class SupplierGoodsCategoryComponent implements OnInit {
             const res = reponse.json();
             switch (res.code) {
               case 200: {
-                this.modal.close();
+                this.modalRef.hide();
                 this.toastr.error('操作成功.', '提示');
                 this.queryCategoryList();
               } break;
@@ -129,9 +129,9 @@ export class SupplierGoodsCategoryComponent implements OnInit {
     }
   }
 
-  showDeleteConfirm(_index, categoryDeleteTpl) {
+  showDeleteConfirm(_index, template: TemplateRef<any>) {
     this.index = _index;
-    this.modal = this.modalService.open(categoryDeleteTpl);
+    this.modalRef = this.modalService.show(template);
   }
   deleteCategoryName() {
     const token = localStorage.getItem('ksx-token-c');
@@ -149,7 +149,7 @@ export class SupplierGoodsCategoryComponent implements OnInit {
             const res = reponse.json();
             switch (res.code) {
               case 200: {
-                this.modal.close();
+                this.modalRef.hide();
                 this.toastr.error('操作成功.', '提示');
                 this.queryCategoryList();
               } break;
