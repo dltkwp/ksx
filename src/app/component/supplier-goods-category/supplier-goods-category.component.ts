@@ -3,6 +3,9 @@ import { Http, Headers } from '@angular/http';
 import { ToastrService } from 'ngx-toastr';
 import { Menus } from '../../interface/menus.interface';
 import { SupplierCategory } from '../../class/SupplierCategory';
+
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+
 @Component({
   selector: 'app-supplier-goods-category',
   templateUrl: './supplier-goods-category.component.html',
@@ -14,10 +17,14 @@ export class SupplierGoodsCategoryComponent implements OnInit {
 
   public categoryName: String;
   public loading: Boolean;
-  public index: Number;
+  public index: number;
+  public showEmpty: Boolean;
+
+  public modal;
 
   constructor(private http: Http,
-    private toastr: ToastrService) { }
+    private toastr: ToastrService,
+    private modalService: NgbModal) { }
 
   ngOnInit() {
     this.menus = {
@@ -27,15 +34,16 @@ export class SupplierGoodsCategoryComponent implements OnInit {
     this.queryCategoryList();
     this.categoryName = '';
     this.loading = false;
+    this.showEmpty = false;
   }
 
-  showSaveModal() {
+  showSaveModal(categorySaveTpl) {
     this.categoryName = '';
-    $("#divCategorySaveModal").modal("show");
+    this.modal = this.modalService.open(categorySaveTpl);
   }
   saveCategoryName(category: SupplierCategory) {
     const name = $.trim(category.categoryName);
-    if (name == "") {
+    if (name === '') {
       this.toastr.warning('名称不可为空.', '提示');
       return false;
     }
@@ -54,7 +62,7 @@ export class SupplierGoodsCategoryComponent implements OnInit {
           const res = reponse.json();
           switch (res.code) {
             case 200: {
-              $("#divCategorySaveModal").modal("hide");
+              this.modal.close();
               this.toastr.error('操作成功.', '提示');
               this.queryCategoryList();
             } break;
@@ -71,17 +79,17 @@ export class SupplierGoodsCategoryComponent implements OnInit {
     }
   }
 
-  showEditModal(_index) {
+  showEditModal(_index, categoryEditTpl) {
     this.index = _index;
     const cur = this.categoryList[_index];
     if (cur) {
-      this.categoryName = cur.categoriesName;
-      $("#divCategoryEditModal").modal("show");
+      this.categoryName = cur.categoryName;
+      this.modal = this.modalService.open(categoryEditTpl);
     }
   }
   editCategoryName(category: SupplierCategory) {
     const name = $.trim(category.categoryName);
-    if (name == "") {
+    if (name === '') {
       this.toastr.warning('名称不可为空.', '提示');
       return false;
     }
@@ -90,7 +98,7 @@ export class SupplierGoodsCategoryComponent implements OnInit {
       const heder = new Headers();
       heder.append('Authorization', token);
       this.loading = true;
-      const cur = this.categoryList[this.index];
+      const cur = this.categoryList[this.index + ''];
       if (cur) {
         this.http.put('http://39.106.65.215:8081/EasyTime/categories', {
           id: cur.id,
@@ -103,7 +111,7 @@ export class SupplierGoodsCategoryComponent implements OnInit {
             const res = reponse.json();
             switch (res.code) {
               case 200: {
-                $("#divCategoryEditModal").modal("hide");
+                this.modal.close();
                 this.toastr.error('操作成功.', '提示');
                 this.queryCategoryList();
               } break;
@@ -121,9 +129,9 @@ export class SupplierGoodsCategoryComponent implements OnInit {
     }
   }
 
-  showDeleteConfirm(_index) {
+  showDeleteConfirm(_index, categoryDeleteTpl) {
     this.index = _index;
-    $("#divDeleteConfirm").modal("show");
+    this.modal = this.modalService.open(categoryDeleteTpl);
   }
   deleteCategoryName() {
     const token = localStorage.getItem('ksx-token-c');
@@ -141,7 +149,7 @@ export class SupplierGoodsCategoryComponent implements OnInit {
             const res = reponse.json();
             switch (res.code) {
               case 200: {
-                $("#divDeleteConfirm").modal("hide");
+                this.modal.close();
                 this.toastr.error('操作成功.', '提示');
                 this.queryCategoryList();
               } break;
@@ -170,8 +178,10 @@ export class SupplierGoodsCategoryComponent implements OnInit {
         .toPromise()
         .then(respnse => {
           this.categoryList = respnse.json();
+          this.showEmpty = this.categoryList.length === 0;
         })
         .catch((error) => {
+          this.showEmpty = true;
           console.error(error);
         });
     }

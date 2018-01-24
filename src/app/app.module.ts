@@ -5,6 +5,7 @@ import { HttpModule  } from '@angular/http';
 import { RouterModule, Routes } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppComponent } from './app.component';
 
@@ -47,6 +48,7 @@ import { RegistComponent } from './component/regist/regist.component';
     FormsModule,
     HttpModule,
     BrowserAnimationsModule,
+    NgbModule.forRoot(),
     ToastrModule.forRoot(),
     RouterModule.forRoot(ROUTES)
   ],

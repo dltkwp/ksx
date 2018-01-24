@@ -113,7 +113,7 @@ export class SupplierDistributorLevelComponent implements OnInit {
     this.index = _index;
     const cur = this.levelList[_index];
     if (cur) {
-      this.leve = cur;
+      this.level = cur;
       $("#divLevelEditModal").modal("show");
     }
   }
