@@ -14,7 +14,7 @@
                         <div class="ibox-content">
                             <div class="row">
                                 <div class="col-sm-9 m-b-xs">
-                                    <div class="btn btn-primary btn-sm" data-toggle="modal" href="#level-add">新增分销等级</div>
+                                    <div  (click)="showSaveModal()"  class="btn btn-primary btn-sm" href="javascript:;;">新增分销等级</div>
                                 </div>
 
                             </div>
@@ -30,42 +30,132 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>一级分销商</td>
-                                            <td>6折</td>
-                                            <td>￥100</td>
+                                        <tr  *ngFor="let item of levelList; index as i;">
+                                            <td>{{i+1}}</td>
+                                            <td>{{item.leveName}}</td>
+                                            <td>{{item.discount}}折</td>
+                                            <td>￥{{item.price}}</td>
                                             <td>
-                                                <div class="btn btn-sm btn-default m-r-xs">编辑</div>
-                                                <div class="btn btn-sm btn-default">删除</div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>2</td>
-                                            <td>二级分销商</td>
-                                            <td>7折</td>
-                                            <td>￥80</td>
-                                            <td>
-                                                <div class="btn btn-sm btn-default m-r-xs">编辑</div>
-                                                <div class="btn btn-sm btn-default">删除</div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>3</td>
-                                            <td>三级分销商</td>
-                                            <td>8折</td>
-                                            <td>￥60</td>
-                                            <td>
-                                                <div class="btn btn-sm btn-default m-r-xs">编辑</div>
-                                                <div class="btn btn-sm btn-default">删除</div>
+                                                <div (click)="showEditModal(i)"  class="btn btn-sm btn-default m-r-xs">编辑</div>
+                                                <div (click)="showDeleteConfirm(i)" class="btn btn-sm btn-default">删除</div>
                                             </td>
                                         </tr>
                                     </tbody>
                                 </table>
+
+                                <div class="empty" *ngIf="showEmpty">
+                                    <div class="img"></div>
+                                    <div class="empty-info font-grey-salt">暂无数据</div>
+                                </div>
+
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div id="divLevelSaveModal" class="modal fade" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+          <h4 class="modal-title">新增分销等级</h4>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-sm-12">
+              <form role="form"  #form="ngForm">
+                <div class="form-group">
+                  <label>等级*</label>
+                  <input type="text" placeholder="请输入分销等级" class="form-control"  name="levelName" [(ngModel)]="level.levelName" maxlength="15">
+                </div>
+                <div class="form-group">
+                  <label>默认折扣*</label>
+                  <input type="text" placeholder="请输入默认折扣（5.0为打5折，10为不打折）" class="form-control"  name="discount" [(ngModel)]="level.discount" maxlength="3">
+                  <div class="help-block">设置默认折扣后，商品将自动根据分销商计算出分销价格，可手动修改</div>
+                </div>
+                <div class="form-group">
+                  <label>加盟费</label>
+                  <input type="text" placeholder="请输入加盟费" class="form-control"   name="price" [(ngModel)]="level.price" maxlength="5">
+                   <div class="help-block">成为分销商，如需加盟费可填写，后续将于小程序端进行显示</div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button"  [disabled]="loading" (click)="save(form.value)"  class="btn btn-primary">保存</button>
+          <button type="button" class="btn btn-white" data-dismiss="modal">关闭</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+<div id="divLevelEditModal" class="modal fade" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+          <h4 class="modal-title">新增分销等级</h4>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-sm-12">
+              <form role="form"  #form="ngForm">
+                <div class="form-group">
+                  <label>等级*</label>
+                  <input type="text" placeholder="请输入分销等级" class="form-control"  name="levelName" [(ngModel)]="level.levelName" maxlength="15">
+                </div>
+                <div class="form-group">
+                  <label>默认折扣*</label>
+                  <input type="text" placeholder="请输入默认折扣（5.0为打5折，10为不打折）" class="form-control"  name="discount" [(ngModel)]="level.discount" maxlength="3">
+                  <div class="help-block">设置默认折扣后，商品将自动根据分销商计算出分销价格，可手动修改</div>
+                </div>
+                <div class="form-group">
+                  <label>加盟费</label>
+                  <input type="text" placeholder="请输入加盟费" class="form-control"   name="price" [(ngModel)]="level.price" maxlength="5">
+                   <div class="help-block">成为分销商，如需加盟费可填写，后续将于小程序端进行显示</div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button"  [disabled]="loading" (click)="edit(form.value)"  class="btn btn-primary">保存</button>
+          <button type="button" class="btn btn-white" data-dismiss="modal">关闭</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <div id="divDeleteConfirm" class="modal fade" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title">温馨提示</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <form role="form">
+                            <div class="form-group">
+                                确定是否删除该信息??
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" [disabled]="loading" (click)="delete()" class="btn btn-primary">确定</button>
+                <button type="button" class="btn btn-white" data-dismiss="modal">关闭</button>
             </div>
         </div>
     </div>
