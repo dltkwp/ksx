@@ -42,7 +42,7 @@ export class SupplierGoodsCategoryComponent implements OnInit {
     this.modalRef = this.modalService.show(template);
   }
   saveCategoryName(category: SupplierCategory) {
-    const name = $.trim(category.categoryName);
+    const name = category.categoryName.trim();
     if (name === '') {
       this.toastr.warning('名称不可为空.', '提示');
       return false;
@@ -81,14 +81,14 @@ export class SupplierGoodsCategoryComponent implements OnInit {
 
   showEditModal(_index, template: TemplateRef<any>) {
     this.index = _index;
-    const cur = this.categoryList[_index];
+    const cur = this.categoryList[ _index + '' ];
     if (cur) {
-      this.categoryName = cur.categoryName;
+      this.categoryName = cur.categoriesName;
       this.modalRef = this.modalService.show(template);
     }
   }
   editCategoryName(category: SupplierCategory) {
-    const name = $.trim(category.categoryName);
+    const name = category.categoryName.trim();
     if (name === '') {
       this.toastr.warning('名称不可为空.', '提示');
       return false;

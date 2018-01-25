@@ -1,8 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 import { Http, Headers } from '@angular/http';
 import { ToastrService } from 'ngx-toastr';
 import { Menus } from '../../interface/menus.interface';
 import { SupplierLevel } from '../../interface/supplier.level.interface';
+
+import { BsModalService } from 'ngx-bootstrap/modal';
+import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
 
 @Component({
   selector: 'app-supplier-distributor-level',
@@ -17,9 +20,11 @@ export class SupplierDistributorLevelComponent implements OnInit {
   public level: SupplierLevel;
   public pricePattern = /^\d+(.\d{1,2})?$/;
   public showEmpty: Boolean;
+  public modalRef: BsModalRef;
 
   constructor(private http: Http,
-    private toastr: ToastrService) { }
+    private toastr: ToastrService,
+    private modalService: BsModalService) { }
 
   discountCheck(discount) {
     let res = true;
@@ -50,19 +55,19 @@ export class SupplierDistributorLevelComponent implements OnInit {
     this.showEmpty = false;
   }
 
-  showSaveModal() {
+  showSaveModal(template: TemplateRef<any>) {
     this.level = {
       levelName: '',
       discount: '',
       price: '',
       id: ''
     };
-    $("#divLevelSaveModal").modal("show");
+    this.modalRef = this.modalService.show(template);
   }
   save(level: SupplierLevel) {
-    const levelName = $.trim(level.levelName);
-    const discount = $.trim(level.discount);
-    const price = $.trim(level.price);
+    const levelName = level.levelName.trim();
+    const discount = level.discount.trim();
+    const price = level.price.trim();
     if (name === '') {
       this.toastr.warning('名称不可为空.', '提示');
       return false;
@@ -92,7 +97,7 @@ export class SupplierDistributorLevelComponent implements OnInit {
           const res = reponse.json();
           switch (res.code) {
             case 200: {
-              $("#divLevelSaveModal").modal("hide");
+              this.modalRef.hide();
               this.toastr.error('操作成功.', '提示');
               this.query();
             } break;
@@ -109,18 +114,18 @@ export class SupplierDistributorLevelComponent implements OnInit {
     }
   }
 
-  showEditModal(_index) {
+  showEditModal(_index, template: TemplateRef<any>) {
     this.index = _index;
     const cur = this.levelList[_index];
     if (cur) {
       this.level = cur;
-      $("#divLevelEditModal").modal("show");
+      this.modalRef = this.modalService.show(template);
     }
   }
   edit(level: SupplierLevel) {
-    const levelName = $.trim(level.levelName);
-    const discount = $.trim(level.discount);
-    const price = $.trim(level.price);
+    const levelName = level.levelName.trim();
+    const discount = level.discount.trim();
+    const price = level.price.trim();
     if (name === '') {
       this.toastr.warning('名称不可为空.', '提示');
       return false;
@@ -152,7 +157,7 @@ export class SupplierDistributorLevelComponent implements OnInit {
             const res = reponse.json();
             switch (res.code) {
               case 200: {
-                $("#divLevelEditModal").modal("hide");
+                this.modalRef.hide();
                 this.toastr.error('操作成功.', '提示');
                 this.query();
               } break;
@@ -170,9 +175,9 @@ export class SupplierDistributorLevelComponent implements OnInit {
     }
   }
 
-  showDeleteConfirm(_index) {
+  showDeleteConfirm(_index, template: TemplateRef<any>) {
     this.index = _index;
-    $("#divDeleteConfirm").modal("show");
+    this.modalRef = this.modalService.show(template);
   }
   delete() {
     const token = localStorage.getItem('ksx-token-c');
@@ -190,7 +195,7 @@ export class SupplierDistributorLevelComponent implements OnInit {
             const res = reponse.json();
             switch (res.code) {
               case 200: {
-                $("#divDeleteConfirm").modal("hide");
+                this.modalRef.hide();
                 this.toastr.error('操作成功.', '提示');
                 this.query();
               } break;
