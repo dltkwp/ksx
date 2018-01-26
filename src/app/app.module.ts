@@ -24,6 +24,7 @@ import { SupplierGoodsComponent } from './component/supplier-goods/supplier-good
 import { SupplierGoodsCategoryComponent } from './component/supplier-goods-category/supplier-goods-category.component';
 import { SupplierDistributorLevelComponent } from './component/supplier-distributor-level/supplier-distributor-level.component';
 import { RegistComponent } from './component/regist/regist.component';
+import { PageComponent } from './component/page/page.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { RegistComponent } from './component/regist/regist.component';
     SupplierGoodsCategoryComponent,
     SupplierDistributorLevelComponent,
     RegistComponent,
+    PageComponent,
   ],
   imports: [
     BrowserModule,
