@@ -1,6 +1,6 @@
 export class SupplierLevel {
   levelName: String;
   discount: String;
-  price: String;
+  initialFee: String;
   id: String;
 }

@@ -32,9 +32,9 @@
                                     <tbody>
                                         <tr *ngFor="let item of levelList; index as i;">
                                             <td>{{i+1}}</td>
-                                            <td>{{item.leveName}}</td>
+                                            <td>{{item.levelName}}</td>
                                             <td>{{item.discount}}折</td>
-                                            <td>￥{{item.price}}</td>
+                                            <td>￥{{item.initialFee}}</td>
                                             <td>
                                                 <div (click)="showEditModal(i,editTpl)" class="btn btn-sm btn-default m-r-xs">编辑</div>
                                                 <div (click)="showDeleteConfirm(i,deleteTpl)" class="btn btn-sm btn-default">删除</div>
@@ -76,13 +76,12 @@
                     </div>
                     <div class="form-group">
                         <label>默认折扣*</label>
-                        <input type="text" placeholder="请输入默认折扣（5.0为打5折，10为不打折）" class="form-control" name="discount" [(ngModel)]="level.discount"
-                            maxlength="3">
+                        <input type="text" placeholder="请输入默认折扣（5.0为打5折，10为不打折）" class="form-control" name="discount" [(ngModel)]="level.discount" maxlength="3">
                         <div class="help-block">设置默认折扣后，商品将自动根据分销商计算出分销价格，可手动修改</div>
                     </div>
                     <div class="form-group">
                         <label>加盟费</label>
-                        <input type="text" placeholder="请输入加盟费" class="form-control" name="price" [(ngModel)]="level.price" maxlength="5">
+                        <input type="text" placeholder="请输入加盟费" class="form-control" name="initialFee" [(ngModel)]="level.initialFee" maxlength="5">
                         <div class="help-block">成为分销商，如需加盟费可填写，后续将于小程序端进行显示</div>
                     </div>
                 </form>
@@ -113,13 +112,12 @@
                     </div>
                     <div class="form-group">
                         <label>默认折扣*</label>
-                        <input type="text" placeholder="请输入默认折扣（5.0为打5折，10为不打折）" class="form-control" name="discount" [(ngModel)]="level.discount"
-                            maxlength="3">
+                        <input type="text" placeholder="请输入默认折扣（5.0为打5折，10为不打折）" class="form-control" name="discount" [(ngModel)]="level.discount" maxlength="3">
                         <div class="help-block">设置默认折扣后，商品将自动根据分销商计算出分销价格，可手动修改</div>
                     </div>
                     <div class="form-group">
                         <label>加盟费</label>
-                        <input type="text" placeholder="请输入加盟费" class="form-control" name="price" [(ngModel)]="level.price" maxlength="5">
+                        <input type="text" placeholder="请输入加盟费" class="form-control" name="initialFee" [(ngModel)]="level.initialFee" maxlength="5">
                         <div class="help-block">成为分销商，如需加盟费可填写，后续将于小程序端进行显示</div>
                     </div>
                 </form>

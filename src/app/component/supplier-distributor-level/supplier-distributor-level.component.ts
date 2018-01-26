@@ -47,7 +47,7 @@ export class SupplierDistributorLevelComponent implements OnInit {
     this.level = {
       levelName: '',
       discount: '',
-      price: '',
+      initialFee: '',
       id: ''
     };
     this.query();
@@ -59,7 +59,7 @@ export class SupplierDistributorLevelComponent implements OnInit {
     this.level = {
       levelName: '',
       discount: '',
-      price: '',
+      initialFee: '',
       id: ''
     };
     this.modalRef = this.modalService.show(template);
@@ -67,8 +67,8 @@ export class SupplierDistributorLevelComponent implements OnInit {
   save(level: SupplierLevel) {
     const levelName = level.levelName.trim();
     const discount = level.discount.trim();
-    const price = level.price.trim();
-    if (name === '') {
+    const price = level.initialFee.trim();
+    if (levelName === '') {
       this.toastr.warning('名称不可为空.', '提示');
       return false;
     }
@@ -85,10 +85,10 @@ export class SupplierDistributorLevelComponent implements OnInit {
       const heder = new Headers();
       heder.append('Authorization', token);
       this.loading = true;
-      this.http.post('http://39.106.65.215:8081/EasyTime/level', {
-        levelName: name,
+      this.http.post('http://39.106.65.215:8081/EasyTime/distributorLevels', {
+        levelName: levelName,
         discount: discount,
-        price: price
+        initialFee: price
       }, {
           headers: heder
         })
@@ -124,9 +124,9 @@ export class SupplierDistributorLevelComponent implements OnInit {
   }
   edit(level: SupplierLevel) {
     const levelName = level.levelName.trim();
-    const discount = level.discount.trim();
-    const price = level.price.trim();
-    if (name === '') {
+    const discount = (level.discount + '').trim();
+    const price = (level.initialFee + '').trim();
+    if (levelName === '') {
       this.toastr.warning('名称不可为空.', '提示');
       return false;
     }
@@ -144,11 +144,11 @@ export class SupplierDistributorLevelComponent implements OnInit {
       this.loading = true;
       const cur = this.levelList[(this.index + '')];
       if (cur) {
-        this.http.put('http://39.106.65.215:8081/EasyTime/level', {
+        this.http.put('http://39.106.65.215:8081/EasyTime/distributorLevel', {
           id: cur.id,
-          levelName: name,
+          levelName: levelName,
           discount: discount,
-          price: price
+          initialFee: price
         }, {
             headers: heder
           })
@@ -187,7 +187,7 @@ export class SupplierDistributorLevelComponent implements OnInit {
       this.loading = true;
       const cur = this.levelList[ this.index + '' ];
       if (cur) {
-        this.http.delete('http://39.106.65.215:8081/EasyTime/level/' + cur.id, {
+        this.http.delete('http://39.106.65.215:8081/EasyTime/distributorLevel/' + cur.id, {
           headers: heder
         })
           .toPromise()
@@ -218,13 +218,13 @@ export class SupplierDistributorLevelComponent implements OnInit {
     if (token) {
       const heder = new Headers();
       heder.append('Authorization', token);
-      this.http.get('http://39.106.65.215:8081/EasyTime/levels', {
+      this.http.get('http://39.106.65.215:8081/EasyTime/distributorLevels', {
         headers: heder
       })
         .toPromise()
         .then(respnse => {
           this.levelList = respnse.json();
-          this.showEmpty = this.levelList.length > 0;
+          this.showEmpty = this.levelList.length === 0;
         })
         .catch((error) => {
           this.showEmpty = true;
