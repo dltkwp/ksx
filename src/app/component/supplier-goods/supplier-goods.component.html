@@ -7,31 +7,32 @@
                 <div class="col-lg-12">
                     <div class="ibox-content m-b-sm border-bottom">
                         <div class="row">
-                            <div class="col-sm-4">
-                                <div class="form-group">
-                                    <label class="control-label" for="product_name">名称</label>
-                                    <input type="text" id="product_name" name="product_name" value="" placeholder="名称" class="form-control">
+                            <form>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="control-label" for="product_name">名称</label>
+                                        <input type="text" name="Name" [(ngModel)]="Name" maxlength="20" placeholder="名称" class="form-control">
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-sm-4">
-                                <div class="form-group">
-                                    <label class="control-label" for="price">分类</label>
-                                    <select name="status" id="status" class="form-control">
-                                        <option value="1" selected="">分类1</option>
-                                        <option value="0">分类2</option>
-                                    </select>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="control-label" for="price">分类</label>
+                                        <select name="status" id="status" class="form-control">
+                                            <option value="1" selected="">分类1</option>
+                                            <option value="0">分类2</option>
+                                        </select>
+                                    </div>
                                 </div>
-                            </div>
-
-                            <div class="col-sm-4">
-                                <div class="form-group">
-                                    <label class="control-label" for="status">状态</label>
-                                    <select name="status" id="status" class="form-control">
-                                        <option value="1" selected="">在售</option>
-                                        <option value="0">停售</option>
-                                    </select>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="control-label" for="status">状态</label>
+                                        <select name="status" id="status" class="form-control">
+                                                    <option value="1" selected="">在售</option>
+                                                    <option value="0">停售</option>
+                                                </select>
+                                    </div>
                                 </div>
-                            </div>
+                            </form>
                         </div>
                     </div>
                     <div class="ibox float-e-margins">
@@ -61,11 +62,11 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td> 1 </td>
+                                        <tr *ngFor="let p of page;let i = index">
+                                            <td> {{i + 1}} </td>
                                             <td>
                                                 <img src="img/gallery/2s.jpg" class="img-lg"> 洗发水 </td>
-                                            <td> 洗发类 </td>
+                                            <td> {{p.id}} </td>
                                             <td> ￥10.00 </td>
                                             <td> ￥50.00 </td>
                                             <td> ￥50.00 </td>
@@ -80,27 +81,10 @@
                                                 <button class="btn-white btn btn-sm">查看</button>
                                             </td>
                                         </tr>
-                                        <tr>
-                                            <td> 2 </td>
-                                            <td>
-                                                <img src="img/gallery/2s.jpg" class="img-lg"> 洗发水 </td>
-                                            <td> 洗发类 </td>
-                                            <td> ￥10.00 </td>
-                                            <td> ￥50.00 </td>
-                                            <td> ￥50.00 </td>
-                                            <td> ￥30.00 </td>
-                                            <td> ￥35.00 </td>
-                                            <td> ￥40.00 </td>
-                                            <td>100 </td>
-                                            <td>
-                                                <span class="label label-danger">停售</span>
-                                            </td>
-                                            <td>
-                                                <button class="btn-white btn btn-sm">查看</button>
-                                            </td>
-                                        </tr>
                                     </tbody>
                                 </table>
+
+                                <app-page [pageParams]="{pageSize:pageSize,totalNum:totalNum,curPage:pageSize/pageData,totalPage:totalPage,pageData:pageData}" (changeCurPage)="getPageData($event)"></app-page>
                             </div>
                         </div>
                     </div>
