@@ -68,6 +68,7 @@ export class SupplierGoodsComponent implements OnInit {
   public menus: Menus;
   public rearch: SupplierGoodsRearch;
   public categoryList: Array<SupplierCategory>;
+  public curCategory: SupplierCategory;
   public showEmpty: Boolean;
 
   page = PageList;
@@ -86,6 +87,7 @@ export class SupplierGoodsComponent implements OnInit {
       parentKey: 'supplier',
       childrenKey: 'supplierGoods'
     };
+    this.curCategory = null;
     this.queryCategoryList();
   }
 
@@ -93,6 +95,10 @@ export class SupplierGoodsComponent implements OnInit {
     const self = this;
     self.curPage = pageNo;
     this.pageSize = this.pageData * pageNo;
+  }
+
+  categoryChange() {
+    console.log(this.curCategory);
   }
 
   queryCategoryList() {
@@ -105,7 +111,14 @@ export class SupplierGoodsComponent implements OnInit {
       })
         .toPromise()
         .then(respnse => {
-          this.categoryList = respnse.json();
+          let tempArr = [];
+          tempArr.push({
+            id: '',
+            categoriesName: '全部'
+          });
+          tempArr = tempArr.concat(respnse.json());
+          this.categoryList = tempArr;
+          this.curCategory = tempArr[0];
         })
         .catch((error) => {
           console.error(error);

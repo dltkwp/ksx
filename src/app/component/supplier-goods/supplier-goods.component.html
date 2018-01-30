@@ -17,9 +17,8 @@
                                 <div class="col-sm-4">
                                     <div class="form-group">
                                         <label class="control-label" for="price">分类</label>
-                                        <select name="status" id="status" class="form-control">
-                                            <option value="1" selected="">分类1</option>
-                                            <option value="0">分类2</option>
+                                        <select name="curCategory" class="form-control" [(ngModel)]="curCategory" (change)="categoryChange(category)">
+                                            <option *ngFor="let category of categoryList" [value]="category">{{category.categoriesName}}</option>
                                         </select>
                                     </div>
                                 </div>
