@@ -68,8 +68,9 @@ export class SupplierGoodsComponent implements OnInit {
   public menus: Menus;
   public rearch: SupplierGoodsRearch;
   public categoryList: Array<SupplierCategory>;
-  public curCategory: SupplierCategory;
+  public curCategoryId: SupplierCategory;
   public showEmpty: Boolean;
+  public curSaleStatus: String;  // onSale : 在售, unSale : 停售
 
   page = PageList;
   public totalNum = this.page.length;  // 总数据条数
@@ -87,7 +88,7 @@ export class SupplierGoodsComponent implements OnInit {
       parentKey: 'supplier',
       childrenKey: 'supplierGoods'
     };
-    this.curCategory = null;
+    this.curSaleStatus = '';
     this.queryCategoryList();
   }
 
@@ -98,7 +99,10 @@ export class SupplierGoodsComponent implements OnInit {
   }
 
   categoryChange() {
-    console.log(this.curCategory);
+    console.log(this.curCategoryId);
+  }
+  saleChange() {
+    console.log(this.curSaleStatus);
   }
 
   queryCategoryList() {
@@ -118,7 +122,7 @@ export class SupplierGoodsComponent implements OnInit {
           });
           tempArr = tempArr.concat(respnse.json());
           this.categoryList = tempArr;
-          this.curCategory = tempArr[0];
+          this.curCategoryId = tempArr[0].id;
         })
         .catch((error) => {
           console.error(error);

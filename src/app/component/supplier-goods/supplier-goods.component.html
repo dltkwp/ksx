@@ -17,18 +17,19 @@
                                 <div class="col-sm-4">
                                     <div class="form-group">
                                         <label class="control-label" for="price">分类</label>
-                                        <select name="curCategory" class="form-control" [(ngModel)]="curCategory" (change)="categoryChange(category)">
-                                            <option *ngFor="let category of categoryList" [value]="category">{{category.categoriesName}}</option>
+                                        <select name="curCategoryId" class="form-control" [(ngModel)]="curCategoryId" (change)="categoryChange()">
+                                            <option *ngFor="let category of categoryList" [value]="category.id">{{category.categoriesName}}</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="col-sm-4">
                                     <div class="form-group">
                                         <label class="control-label" for="status">状态</label>
-                                        <select name="status" id="status" class="form-control">
-                                                    <option value="1" selected="">在售</option>
-                                                    <option value="0">停售</option>
-                                                </select>
+                                        <select name="curSaleStatus" [(ngModel)]="curSaleStatus" (change)="saleChange()" class="form-control">
+                                            <option value="" selected="">全部</option>
+                                            <option value="onSale" selected="">在售</option>
+                                            <option value="unSale">停售</option>
+                                        </select>
                                     </div>
                                 </div>
                             </form>
